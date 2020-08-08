@@ -50,16 +50,5 @@ type Mutation {
 }
 `;
 
-
-
-
-
-
-
-
-
-
-
-
 // export the typeDefs
 module.exports = typeDefs;
