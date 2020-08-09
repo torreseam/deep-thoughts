@@ -1,11 +1,13 @@
 import React from 'react';
 //dependenceies to Integrate ApolloHooks
 import { useQuery } from '@apollo/react-hooks';
+import ThoughtForm from '../components/ThoughtForm';
 import ThoughtList from '../components/ThoughtList';
 //import to see logged in users friends list 
 import { QUERY_THOUGHTS, QUERY_ME_BASIC } from '../utils/queries';
 import FriendList from '../components/FriendsList';
 import Auth from '../utils/auth';
+
 
 
 
@@ -20,10 +22,15 @@ const Home = () => {
 
   return (
     <main>
-      <div className="flex-row justify-space-between">
+      <div className='flex-row justify-space-between'>
+        {loggedIn && (
+          <div className="col-12 mb-3">
+            <ThoughtForm />
+          </div>
+        )}
         <div className={`col-12 mb-3 ${loggedIn && 'col-lg-8'}`}>
           {loading ? (
-            <div>Loading...</div>
+            <div> Loading...</div>
           ) : (
               <ThoughtList thoughts={thoughts} title="Some Feed for Thought(s)..." />
             )}
