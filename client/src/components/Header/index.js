@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Auth from '../../utils/auth';
 
 const Header = () => {
   return (
@@ -8,14 +9,30 @@ const Header = () => {
         <Link to="/">
           <h1>Deep Thoughts</h1>
         </Link>
-
+        {/* logout function as part of const logout */}
         <nav className="text-center">
-          <Link to="/login">Login</Link>
-          <Link to="/signup">Signup</Link>
+          {Auth.loggedIn() ? (
+            <>
+              <Link to="/profile">Me</Link>
+              <a href="/" onClick={logout}>
+                Logout
+      </a>
+            </>
+          ) : (
+              <>
+                <Link to="/login">Login</Link>
+                <Link to="/signup">Signup</Link>
+              </>
+            )}
         </nav>
       </div>
     </header>
   );
+};
+
+const logout = event => {
+  event.preventDefault();
+  Auth.logout();
 };
 
 export default Header;
